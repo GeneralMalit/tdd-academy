@@ -71,19 +71,16 @@ Comprehensive JUnit 5 tests covering:
 
 ### Running the Application
 ```bash
-cd lab1
 ./gradlew bootRun
 ```
 
 ### Running Tests
 ```bash
-cd lab1
 ./gradlew test
 ```
 
 ### Building the Application
 ```bash
-cd lab1
 ./gradlew build
 ```
 
