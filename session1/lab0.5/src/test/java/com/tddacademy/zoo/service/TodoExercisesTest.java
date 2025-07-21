@@ -29,10 +29,10 @@ class TodoExercisesTest {
     @Spy
     private NotificationService notificationService;
 
-    @InjectMocks
+    @InjectMocks // Keep AnimalService as @InjectMocks for its own tests
     private AnimalService animalService;
 
-    @InjectMocks
+
     private ZooManager zooManager;
 
     private Animal simba;
@@ -44,6 +44,7 @@ class TodoExercisesTest {
         simba = new Animal("Simba", "Lion", 180.5, LocalDate.of(2020, 5, 15), "Healthy");
         nala = new Animal("Nala", "Lion", 160.0, LocalDate.of(2020, 6, 20), "Healthy");
         timon = new Animal("Timon", "Meerkat", 2.5, LocalDate.of(2021, 3, 10), "Healthy");
+        this.zooManager = new ZooManager(animalService, notificationService);
     }
 
     // ========== MOCK EXERCISES ==========
@@ -56,14 +57,14 @@ class TodoExercisesTest {
         // 2. Call animalService.getAnimalsBySpecies("Lion")
         // 3. Assert that the result contains 2 animals
         // 4. Assert that both animals are lions
-        
+
         // Your code here:
-        // when(animalRepository.findBySpecies("Lion")).thenReturn(Arrays.asList(simba, nala));
-        //
-        // List<Animal> lions = animalService.getAnimalsBySpecies("Lion");
-        //
-        // assertEquals(2, lions.size());
-        // assertTrue(lions.stream().allMatch(animal -> "Lion".equals(animal.getSpecies())));
+        when(animalRepository.findBySpecies("Lion")).thenReturn(Arrays.asList(simba, nala));
+
+        List<Animal> lions = animalService.getAnimalsBySpecies("Lion");
+
+        assertEquals(2, lions.size());
+        assertTrue(lions.stream().allMatch(animal -> "Lion".equals(animal.getSpecies())));
     }
 
     @Test
@@ -73,13 +74,11 @@ class TodoExercisesTest {
         // 1. Mock animalRepository.findById(999L) to return Optional.empty()
         // 2. Call animalService.getAnimalById(999L)
         // 3. Assert that the result is empty
-        
+
         // Your code here:
-        // when(animalRepository.findById(999L)).thenReturn(Optional.empty());
-        //
-        // Optional<Animal> result = animalService.getAnimalById(999L);
-        //
-        // assertTrue(result.isEmpty());
+        when(animalRepository.findById(999L)).thenReturn(Optional.empty());
+        Optional<Animal> result = animalService.getAnimalById(999L);
+        assertTrue(result.isEmpty());
     }
 
     @Test
@@ -89,14 +88,14 @@ class TodoExercisesTest {
         // 1. Mock animalRepository.save(any(Animal.class)) to return simba with ID 1
         // 2. Call animalService.createAnimal(simba)
         // 3. Verify that animalRepository.save(simba) was called exactly once
-        
+
         // Your code here:
-        // simba.setId(1L);
-        // when(animalRepository.save(any(Animal.class))).thenReturn(simba);
-        //
-        // animalService.createAnimal(simba);
-        //
-        // verify(animalRepository, times(1)).save(simba);
+        simba.setId(1L);
+        when(animalRepository.save(any(Animal.class))).thenReturn(simba);
+
+        animalService.createAnimal(simba);
+
+        verify(animalRepository, times(1)).save(simba);
     }
 
     // ========== STUB EXERCISES ==========
@@ -109,14 +108,14 @@ class TodoExercisesTest {
         // 2. Mock animalRepository.findAll() to return this stub data
         // 3. Call animalService.getAverageWeight()
         // 4. Assert the average is 114.33 (with 0.01 precision)
-        
+
         // Your code here:
-        // List<Animal> animals = Arrays.asList(simba, nala, timon);
-        // when(animalRepository.findAll()).thenReturn(animals);
-        //
-        // double averageWeight = animalService.getAverageWeight();
-        //
-        // assertEquals(114.33, averageWeight, 0.01);
+        List<Animal> animals = Arrays.asList(simba, nala, timon);
+        when(animalRepository.findAll()).thenReturn(animals);
+
+        double averageWeight = animalService.getAverageWeight();
+
+        assertEquals(114.33, averageWeight, 0.01);
     }
 
     @Test
@@ -126,13 +125,13 @@ class TodoExercisesTest {
         // 1. Mock animalRepository.findAll() to return empty list
         // 2. Call animalService.getAverageWeight()
         // 3. Assert the result is 0.0
-        
+
         // Your code here:
-        // when(animalRepository.findAll()).thenReturn(Arrays.asList());
-        //
-        // double averageWeight = animalService.getAverageWeight();
-        //
-        // assertEquals(0.0, averageWeight, 0.01);
+        when(animalRepository.findAll()).thenReturn(Arrays.asList());
+
+        double averageWeight = animalService.getAverageWeight();
+
+        assertEquals(0.0, averageWeight, 0.01);
     }
 
     @Test
@@ -142,13 +141,13 @@ class TodoExercisesTest {
         // 1. Mock animalRepository.count() to return 15
         // 2. Call animalService.getAnimalCount()
         // 3. Assert the result is 15
-        
+
         // Your code here:
-        // when(animalRepository.count()).thenReturn(15);
-        //
-        // int count = animalService.getAnimalCount();
-        //
-        // assertEquals(15, count);
+        when(animalRepository.count()).thenReturn(15);
+
+        int count = animalService.getAnimalCount();
+
+        assertEquals(15, count);
     }
 
     // ========== SPY EXERCISES ==========
@@ -163,18 +162,18 @@ class TodoExercisesTest {
         //    - to: "staff@zoo.com"
         //    - subject: "New Animal Added"
         //    - message containing "Simba"
-        
+
         // Your code here:
-        // simba.setId(1L);
-        // when(animalRepository.save(any(Animal.class))).thenReturn(simba);
-        //
-        // zooManager.addNewAnimal(simba);
-        //
-        // verify(notificationService, times(1)).sendEmail(
-        //     eq("staff@zoo.com"),
-        //     eq("New Animal Added"),
-        //     contains("Simba")
-        // );
+        simba.setId(1L);
+        when(animalRepository.save(any(Animal.class))).thenReturn(simba);
+
+        zooManager.addNewAnimal(simba);
+
+        verify(notificationService, times(1)).sendEmail(
+                eq("staff@zoo.com"),
+                eq("New Animal Added"),
+                contains("Simba")
+        );
     }
 
     @Test
@@ -188,19 +187,19 @@ class TodoExercisesTest {
         // 5. Verify that notificationService.sendSMS was called with:
         //    - phone: "+1234567890"
         //    - message containing "Simba"
-        
+
         // Your code here:
-        // simba.setId(1L);
-        // when(animalRepository.findById(1L)).thenReturn(Optional.of(simba));
-        // when(animalRepository.existsById(1L)).thenReturn(true);
-        // doNothing().when(animalRepository).deleteById(1L);
-        //
-        // zooManager.removeAnimal(1L);
-        //
-        // verify(notificationService, times(1)).sendSMS(
-        //     eq("+1234567890"),
-        //     contains("Simba")
-        // );
+        simba.setId(1L);
+        when(animalRepository.findById(1L)).thenReturn(Optional.of(simba));
+        when(animalRepository.existsById(1L)).thenReturn(true);
+        doNothing().when(animalRepository).deleteById(1L);
+
+        zooManager.removeAnimal(1L);
+
+        verify(notificationService, times(1)).sendSMS(
+                eq("+1234567890"),
+                contains("Simba")
+        );
     }
 
     @Test
@@ -210,15 +209,16 @@ class TodoExercisesTest {
         // 1. Mock animalRepository.findById(1L) to return simba with health status "Healthy"
         // 2. Call zooManager.checkAnimalHealth(1L)
         // 3. Verify that notificationService.sendEmail was NEVER called
-        
+
         // Your code here:
-        // simba.setId(1L);
-        // simba.setHealthStatus("Healthy");
-        // when(animalRepository.findById(1L)).thenReturn(Optional.of(simba));
-        //
-        // zooManager.checkAnimalHealth(1L);
-        //
-        // verify(notificationService, never()).sendEmail(any(), any(), any());
+        simba.setId(1L);
+        simba.setHealthStatus("Healthy");
+        // When AnimalService is @InjectMocks, you mock its dependencies to control its behavior
+        when(animalRepository.findById(1L)).thenReturn(Optional.of(simba));
+
+        zooManager.checkAnimalHealth(1L);
+
+        verify(notificationService, never()).sendEmail(any(), any(), any());
     }
 
     // ========== ADVANCED EXERCISES ==========
@@ -231,15 +231,15 @@ class TodoExercisesTest {
         // 2. Call animalService.getAverageWeight()
         // 3. Verify that animalRepository.findAll() was called exactly once
         // 4. Assert the average weight is 170.25
-        
+
         // Your code here:
-        // List<Animal> animals = Arrays.asList(simba, nala);
-        // when(animalRepository.findAll()).thenReturn(animals);
-        //
-        // double averageWeight = animalService.getAverageWeight();
-        //
-        // verify(animalRepository, times(1)).findAll();
-        // assertEquals(170.25, averageWeight, 0.01);
+        List<Animal> animals = Arrays.asList(simba, nala);
+        when(animalRepository.findAll()).thenReturn(animals);
+
+        double averageWeight = animalService.getAverageWeight();
+
+        verify(animalRepository, times(1)).findAll();
+        assertEquals(170.25, averageWeight, 0.01);
     }
 
     @Test
@@ -252,18 +252,18 @@ class TodoExercisesTest {
         //    - to: "staff@zoo.com"
         //    - subject: "New Animal Added"
         //    - message: "New animal Simba has been added to the zoo."
-        
+
         // Your code here:
-        // simba.setId(1L);
-        // when(animalRepository.save(any(Animal.class))).thenReturn(simba);
-        //
-        // zooManager.addNewAnimal(simba);
-        //
-        // verify(notificationService).sendEmail(
-        //     "staff@zoo.com",
-        //     "New Animal Added",
-        //     "New animal Simba has been added to the zoo."
-        // );
+        simba.setId(1L);
+        when(animalRepository.save(any(Animal.class))).thenReturn(simba);
+
+        zooManager.addNewAnimal(simba);
+
+        verify(notificationService).sendEmail(
+                "staff@zoo.com",
+                "New Animal Added",
+                "New animal Simba has been added to the zoo."
+        );
     }
 
     @Test
@@ -277,19 +277,20 @@ class TodoExercisesTest {
         //    - subject: "Animal Health Alert"
         //    - message containing "1"
         // 4. Verify that animalRepository.findById(1L) was called exactly once
-        
+
         // Your code here:
-        // simba.setId(1L);
-        // simba.setHealthStatus("Sick");
-        // when(animalRepository.findById(1L)).thenReturn(Optional.of(simba));
-        //
-        // zooManager.checkAnimalHealth(1L);
-        //
-        // verify(notificationService, times(1)).sendEmail(
-        //     eq("vet@zoo.com"),
-        //     eq("Animal Health Alert"),
-        //     contains("1")
-        // );
-        // verify(animalRepository, times(1)).findById(1L);
+        simba.setId(1L);
+        simba.setHealthStatus("Sick");
+        // When AnimalService is @InjectMocks, you mock its dependencies to control its behavior
+        when(animalRepository.findById(1L)).thenReturn(Optional.of(simba));
+
+        zooManager.checkAnimalHealth(1L);
+
+        verify(notificationService, times(1)).sendEmail(
+                eq("vet@zoo.com"),
+                eq("Animal Health Alert"),
+                contains("1")
+        );
+        verify(animalRepository, times(1)).findById(1L);
     }
-} 
+}
