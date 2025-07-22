@@ -92,6 +92,16 @@ class ZooRepositoryTest {
         //
         // assertEquals(1, manilaZoos.size());
         // assertEquals("Manila Zoo", manilaZoos.get(0).getName());
+        // Given
+        zooRepository.save(manilaZoo);
+        zooRepository.save(cebuSafari);
+
+        // When
+        List<Zoo> manilaZoos = zooRepository.findByNameContainingIgnoreCase("Manila");
+
+        // Then
+        assertEquals(1, manilaZoos.size());
+        assertEquals("Manila Zoo", manilaZoos.get(0).getName());
     }
 
     @Test
@@ -112,6 +122,17 @@ class ZooRepositoryTest {
         // assertEquals(2, philippineZoos.size());
         // assertTrue(philippineZoos.stream().anyMatch(zoo -> zoo.getName().equals("Manila Zoo")));
         // assertTrue(philippineZoos.stream().anyMatch(zoo -> zoo.getName().equals("Cebu Safari")));
+        // Given
+        zooRepository.save(manilaZoo);
+        zooRepository.save(cebuSafari);
+
+        // When
+        List<Zoo> philippineZoos = zooRepository.findByLocationContainingIgnoreCase("Philippines");
+
+        // Then
+        assertEquals(2, philippineZoos.size());
+        assertTrue(philippineZoos.stream().anyMatch(zoo -> zoo.getName().equals("Manila Zoo")));
+        assertTrue(philippineZoos.stream().anyMatch(zoo -> zoo.getName().equals("Cebu Safari")));
     }
 
     @Test
@@ -131,6 +152,13 @@ class ZooRepositoryTest {
         //
         // assertTrue(zooRepository.existsById(savedId));
         // assertFalse(zooRepository.existsById(999L));
+        // Given
+        Zoo savedZoo = zooRepository.save(manilaZoo);
+        Long savedId = savedZoo.getId();
+
+        // When & Then
+        assertTrue(zooRepository.existsById(savedId));
+        assertFalse(zooRepository.existsById(999L));
     }
 
     @Test
@@ -151,5 +179,15 @@ class ZooRepositoryTest {
         // Optional<Zoo> deletedZoo = zooRepository.findById(savedId);
         //
         // assertTrue(deletedZoo.isEmpty());
+        // Given
+        Zoo savedZoo = zooRepository.save(manilaZoo);
+        Long savedId = savedZoo.getId();
+
+        // When
+        zooRepository.deleteById(savedId);
+
+        // Then
+        Optional<Zoo> deletedZoo = zooRepository.findById(savedId);
+        assertTrue(deletedZoo.isEmpty());
     }
 } 

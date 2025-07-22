@@ -122,6 +122,28 @@ class ZooServiceTest {
         //
         // assertEquals("Updated Manila Zoo", result.getName());
         // verify(zooRepository, times(1)).save(any(Zoo.class));
+        // Given
+        Long zooId = 1L;
+        manilaZoo.setId(zooId);
+        Zoo updatedZooDetails = new Zoo("Updated Manila Zoo", "Updated Location", "Updated description");
+        when(zooRepository.findById(zooId)).thenReturn(Optional.of(manilaZoo));
+        when(zooRepository.save(any(Zoo.class))).thenAnswer(invocation -> {
+            Zoo zooToSave = invocation.getArgument(0);
+            zooToSave.setId(zooId);
+            return zooToSave;
+        });
+
+        // When
+        Zoo result = zooService.updateZoo(zooId, updatedZooDetails);
+
+        // Then
+        assertNotNull(result);
+        assertEquals(zooId, result.getId());
+        assertEquals("Updated Manila Zoo", result.getName());
+        assertEquals("Updated Location", result.getLocation());
+        assertEquals("Updated description", result.getDescription());
+        verify(zooRepository, times(1)).findById(zooId);
+        verify(zooRepository, times(1)).save(any(Zoo.class));
     }
 
     @Test
@@ -144,6 +166,19 @@ class ZooServiceTest {
         //     () -> zooService.updateZoo(zooId, updatedZoo)
         // );
         // assertTrue(exception.getMessage().contains("Zoo not found with id: 999"));
+        // Given
+        Long zooId = 999L;
+        Zoo updatedZoo = new Zoo("Updated Zoo", "Updated Location", "Updated description");
+
+        when(zooRepository.findById(zooId)).thenReturn(Optional.empty());
+
+        // When & Then
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> zooService.updateZoo(zooId, updatedZoo)
+        );
+        assertTrue(exception.getMessage().contains("Zoo not found with id: 999"));
+        verify(zooRepository, never()).save(any(Zoo.class));
     }
 
     @Test
@@ -161,6 +196,15 @@ class ZooServiceTest {
         // zooService.deleteZoo(zooId);
         //
         // verify(zooRepository, times(1)).deleteById(zooId);
+        // Given
+        Long zooId = 1L;
+        when(zooRepository.existsById(zooId)).thenReturn(true);
+
+        // When
+        zooService.deleteZoo(zooId);
+
+        // Then
+        verify(zooRepository, times(1)).deleteById(zooId);
     }
 
     @Test
@@ -180,6 +224,16 @@ class ZooServiceTest {
         //     () -> zooService.deleteZoo(zooId)
         // );
         // assertTrue(exception.getMessage().contains("Zoo not found with id: 999"));
+        Long zooId = 999L;
+        when(zooRepository.existsById(zooId)).thenReturn(false);
+
+        // When & Then
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> zooService.deleteZoo(zooId)
+        );
+        assertTrue(exception.getMessage().contains("Zoo not found with id: 999"));
+        verify(zooRepository, never()).deleteById(anyLong());
     }
 
     @Test

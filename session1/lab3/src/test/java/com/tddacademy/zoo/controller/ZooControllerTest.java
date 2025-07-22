@@ -112,17 +112,22 @@ class ZooControllerTest {
         // 6. Expect the response to contain the updated name
         
         // Your code here:
-        // manilaZoo.setId(1L);
-        // Zoo updatedZoo = new Zoo("Updated Manila Zoo", "Updated Location", "Updated description");
-        // updatedZoo.setId(1L);
-        //
-        // when(zooService.updateZoo(eq(1L), any(Zoo.class))).thenReturn(updatedZoo);
-        //
-        // mockMvc.perform(put("/api/zoos/1")
-        //         .contentType(MediaType.APPLICATION_JSON)
-        //         .content(objectMapper.writeValueAsString(updatedZoo)))
-        //         .andExpect(status().isOk())
-        //         .andExpect(jsonPath("$.name").value("Updated Manila Zoo"));
+        // Given
+        manilaZoo.setId(1L);
+        Zoo updatedZoo = new Zoo("Updated Manila Zoo", "Updated Location", "Updated description");
+        updatedZoo.setId(1L);
+
+        when(zooService.updateZoo(eq(1L), any(Zoo.class))).thenReturn(updatedZoo);
+
+        // When & Then
+        mockMvc.perform(put("/api/zoos/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updatedZoo)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L))
+                .andExpect(jsonPath("$.name").value("Updated Manila Zoo"))
+                .andExpect(jsonPath("$.location").value("Updated Location"))
+                .andExpect(jsonPath("$.description").value("Updated description"));
     }
 
     @Test
@@ -135,15 +140,18 @@ class ZooControllerTest {
         // 4. Expect status 404 (Not Found)
         
         // Your code here:
-        // Zoo updatedZoo = new Zoo("Updated Zoo", "Updated Location", "Updated description");
-        //
-        // when(zooService.updateZoo(eq(999L), any(Zoo.class)))
-        //         .thenThrow(new IllegalArgumentException("Zoo not found with id: 999"));
-        //
-        // mockMvc.perform(put("/api/zoos/999")
-        //         .contentType(MediaType.APPLICATION_JSON)
-        //         .content(objectMapper.writeValueAsString(updatedZoo)))
-        //         .andExpect(status().isNotFound());
+        // Given
+        Zoo updatedZoo = new Zoo("Updated Zoo", "Updated Location", "Updated description");
+
+        when(zooService.updateZoo(eq(999L), any(Zoo.class)))
+                .thenThrow(new IllegalArgumentException("Zoo not found with id: 999"));
+
+        // When & Then
+        mockMvc.perform(put("/api/zoos/999")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(updatedZoo)))
+                .andExpect(status().isNotFound());
+
     }
 
     @Test
@@ -155,10 +163,12 @@ class ZooControllerTest {
         // 3. Expect status 204 (No Content)
         
         // Your code here:
-        // doNothing().when(zooService).deleteZoo(1L);
-        //
-        // mockMvc.perform(delete("/api/zoos/1"))
-        //         .andExpect(status().isNoContent());
+        // Given
+        doNothing().when(zooService).deleteZoo(1L);
+
+        // When & Then
+        mockMvc.perform(delete("/api/zoos/1"))
+                .andExpect(status().isNoContent());
     }
 
     @Test
@@ -170,11 +180,13 @@ class ZooControllerTest {
         // 3. Expect status 404 (Not Found)
         
         // Your code here:
-        // doThrow(new IllegalArgumentException("Zoo not found with id: 999"))
-        //         .when(zooService).deleteZoo(999L);
-        //
-        // mockMvc.perform(delete("/api/zoos/999"))
-        //         .andExpect(status().isNotFound());
+        // Given
+        doThrow(new IllegalArgumentException("Zoo not found with id: 999"))
+                .when(zooService).deleteZoo(999L);
+
+        // When & Then
+        mockMvc.perform(delete("/api/zoos/999"))
+                .andExpect(status().isNotFound());
     }
 
     @Test

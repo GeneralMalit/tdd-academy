@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.tddacademy.zoo.service.ZooServiceTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2025-07-22T01:15:57.202Z" hostname="GXCHLAP00679.local" time="0.078">
+  <properties/>
+  <testcase name="Should throw exception when deleting non-existent zoo" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.064"/>
+  <testcase name="Should throw exception when updating non-existent zoo" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.001"/>
+  <testcase name="Should get all zoos" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.002"/>
+  <testcase name="Should get zoo by id when exists" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.001"/>
+  <testcase name="Should return empty when zoo not found" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.002"/>
+  <testcase name="Should check if zoo exists" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.001"/>
+  <testcase name="Should create zoo successfully" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.001"/>
+  <testcase name="Should delete zoo when exists" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.001"/>
+  <testcase name="Should find zoos by name" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.001"/>
+  <testcase name="Should update zoo when exists" classname="com.tddacademy.zoo.service.ZooServiceTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
