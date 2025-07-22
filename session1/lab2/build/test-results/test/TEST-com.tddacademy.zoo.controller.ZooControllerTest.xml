@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.tddacademy.zoo.controller.ZooControllerTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2025-07-22T00:54:31.267Z" hostname="GXCHLAP00679.local" time="0.161">
+  <properties/>
+  <testcase name="PUT /api/zoos/{id} should update zoo successfully" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.088"/>
+  <testcase name="GET /api/zoos should return empty list when no zoos exist" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.006"/>
+  <testcase name="Should handle malformed JSON in POST request" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.008"/>
+  <testcase name="DELETE /api/zoos/{id} should return 404 when zoo does not exist" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.005"/>
+  <testcase name="PUT /api/zoos/{id} should return 404 when zoo does not exist" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.005"/>
+  <testcase name="GET /api/zoos should return all zoos" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.007"/>
+  <testcase name="GET /api/zoos/{id} should return 404 when zoo does not exist" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.004"/>
+  <testcase name="Should handle malformed JSON in PUT request" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.004"/>
+  <testcase name="DELETE /api/zoos/{id} should delete zoo successfully" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.004"/>
+  <testcase name="POST /api/zoos should create zoo successfully" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.005"/>
+  <testcase name="GET /api/zoos/{id} should return zoo when it exists" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.005"/>
+  <testcase name="Should return proper content type for all responses" classname="com.tddacademy.zoo.controller.ZooControllerTest" time="0.009"/>
+  <system-out><![CDATA[2025-07-22T08:54:31.016+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.tddacademy.zoo.controller.ZooControllerTest]: ZooControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-07-22T08:54:31.030+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.tddacademy.zoo.ZooApplication for test class com.tddacademy.zoo.controller.ZooControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.3)
+
+2025-07-22T08:54:31.040+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] c.t.zoo.controller.ZooControllerTest     : Starting ZooControllerTest using Java 22.0.2 with PID 3616 (started by general.malit in /Users/general.malit/Desktop/FECPLab/FECP5-1006/tdd-academy/session1/lab2)
+2025-07-22T08:54:31.041+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] c.t.zoo.controller.ZooControllerTest     : Running with Spring Boot v3.5.3, Spring v6.2.8
+2025-07-22T08:54:31.041+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] c.t.zoo.controller.ZooControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2025-07-22T08:54:31.041+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@627bcd7e
+2025-07-22T08:54:31.177+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : 7 mappings in 'requestMappingHandlerMapping'
+2025-07-22T08:54:31.197+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-07-22T08:54:31.199+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-07-22T08:54:31.202+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-07-22T08:54:31.215+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-07-22T08:54:31.215+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-07-22T08:54:31.217+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2025-07-22T08:54:31.263+08:00  INFO 3616 --- [zoo-simulator-lab2] [    Test worker] c.t.zoo.controller.ZooControllerTest     : Started ZooControllerTest in 0.231 seconds (process running for 1.558)
+2025-07-22T08:54:31.305+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#updateZoo(Long, Zoo)
+2025-07-22T08:54:31.331+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [Zoo[id=1, name=Updated Zoo Name, location=Updated Location, description=Updated description, enclosu (truncated)...]
+2025-07-22T08:54:31.338+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.338+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Zoo[id=1, name=Updated Zoo Name, location=Updated Location, description=Updated description, enclosu (truncated)...]
+2025-07-22T08:54:31.359+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#getAllZoos()
+2025-07-22T08:54:31.361+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.361+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[]]
+2025-07-22T08:54:31.365+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#createZoo(Zoo)
+2025-07-22T08:54:31.368+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.web.method.HandlerMethod             : Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<com.tddacademy.zoo.model.Zoo> com.tddacademy.zoo.controller.ZooController.createZoo(com.tddacademy.zoo.model.Zoo): JSON parse error: Unexpected character ('i' (code 105)): was expecting double-quote to start field name
+2025-07-22T08:54:31.370+08:00  WARN 3616 --- [zoo-simulator-lab2] [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('i' (code 105)): was expecting double-quote to start field name]
+2025-07-22T08:54:31.375+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#deleteZoo(Long)
+2025-07-22T08:54:31.376+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.376+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2025-07-22T08:54:31.381+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#updateZoo(Long, Zoo)
+2025-07-22T08:54:31.381+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [Zoo[id=null, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart (truncated)...]
+2025-07-22T08:54:31.382+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.382+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2025-07-22T08:54:31.386+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#getAllZoos()
+2025-07-22T08:54:31.389+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.389+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[Zoo[id=1, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart o (truncated)...]
+2025-07-22T08:54:31.394+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#getZooById(Long)
+2025-07-22T08:54:31.395+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.396+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2025-07-22T08:54:31.399+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#updateZoo(Long, Zoo)
+2025-07-22T08:54:31.400+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.web.method.HandlerMethod             : Could not resolve parameter [1] in public org.springframework.http.ResponseEntity<com.tddacademy.zoo.model.Zoo> com.tddacademy.zoo.controller.ZooController.updateZoo(java.lang.Long,com.tddacademy.zoo.model.Zoo): JSON parse error: Unexpected character ('i' (code 105)): was expecting double-quote to start field name
+2025-07-22T08:54:31.400+08:00  WARN 3616 --- [zoo-simulator-lab2] [    Test worker] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('i' (code 105)): was expecting double-quote to start field name]
+2025-07-22T08:54:31.404+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#deleteZoo(Long)
+2025-07-22T08:54:31.405+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.405+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2025-07-22T08:54:31.409+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#createZoo(Zoo)
+2025-07-22T08:54:31.409+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [Zoo[id=null, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart (truncated)...]
+2025-07-22T08:54:31.410+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.410+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Zoo[id=1, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart of (truncated)...]
+2025-07-22T08:54:31.415+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#getZooById(Long)
+2025-07-22T08:54:31.416+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.416+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Zoo[id=1, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart of (truncated)...]
+2025-07-22T08:54:31.422+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#getAllZoos()
+2025-07-22T08:54:31.422+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.422+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[Zoo[id=1, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart o (truncated)...]
+2025-07-22T08:54:31.423+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#getZooById(Long)
+2025-07-22T08:54:31.424+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.424+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Zoo[id=1, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart of (truncated)...]
+2025-07-22T08:54:31.424+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#createZoo(Zoo)
+2025-07-22T08:54:31.425+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [Zoo[id=null, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart (truncated)...]
+2025-07-22T08:54:31.425+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.425+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Zoo[id=1, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart of (truncated)...]
+2025-07-22T08:54:31.425+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#updateZoo(Long, Zoo)
+2025-07-22T08:54:31.426+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [Zoo[id=null, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart (truncated)...]
+2025-07-22T08:54:31.426+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.426+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [Zoo[id=1, name=Manila Zoo, location=Manila, Philippines, description=A beautiful zoo in the heart of (truncated)...]
+2025-07-22T08:54:31.427+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.tddacademy.zoo.controller.ZooController#deleteZoo(Long)
+2025-07-22T08:54:31.427+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-07-22T08:54:31.427+08:00 DEBUG 3616 --- [zoo-simulator-lab2] [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
